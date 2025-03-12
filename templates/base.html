@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>{% block title %}Cards{% endblock %}</title>
+</head>
+<body>
+    <p>
+        <a href="/">Home</a>
+        <a href="/highlow">High Low</a>  
+        <a href="/twentyone">21</a>
+        <a href="/settings">Settings</a>
+        <a href="/admin">Admin</a>  <!--change this to be hidden/authenticated somewhen idk-->
+    </p>  
+    {% block content %}{% endblock %}
+</body>
+</html>

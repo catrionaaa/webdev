@@ -19,5 +19,9 @@ def twentyone():
 def settings():
     return render_template('settings.html')
 
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8000)

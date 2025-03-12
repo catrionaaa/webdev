@@ -11,6 +11,10 @@ def home():
 def highlow():
     return render_template('highlow.html')
 
+@app.route('/twentyone')
+def twentyone():
+    return render_template("twentyone.html")
+
 @app.route('/settings')
 def settings():
     return render_template('settings.html')

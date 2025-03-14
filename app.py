@@ -7,17 +7,17 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
-@app.route('/highlow')
-def highlow():
-    return render_template('highlow.html')
+@app.route('/blackjack')
+def blackjack():
+    return render_template('blackjack.html')
 
-@app.route('/twentyone')
-def twentyone():
-    return render_template("twentyone.html")
+@app.route('/snap')
+def snap():
+    return render_template("snap.html")
 
-@app.route('/pairs')
-def pairs():
-    return render_template("pairs.html")
+@app.route('/selectgame')
+def selectgame():
+    return render_template("selectgame.html")
 
 @app.route('/settings')
 def settings():

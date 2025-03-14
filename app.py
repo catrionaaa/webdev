@@ -15,6 +15,10 @@ def highlow():
 def twentyone():
     return render_template("twentyone.html")
 
+@app.route('/pairs')
+def pairs():
+    return render_template("pairs.html")
+
 @app.route('/settings')
 def settings():
     return render_template('settings.html')

@@ -1,8 +1,14 @@
+//initialises by checking localstorage for an existing game
+function initialise() {
+  if(!localStorage.getItem("deckId"))
+    reset();
+  else
+    render();
+}
+
 //make a new deck, save the deckID to local storage and deal the cards evenly between two piles
 function fetchDeck() {
   const newDeckUrl = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
-  const pile1Name = "1"
-  const pile2Name = "2"
 
   fetch(newDeckUrl)
     .then((res) => res.json())
@@ -13,33 +19,13 @@ function fetchDeck() {
     .catch((err) => {
       console.error(err);
     });
-
-  dealCards(pile1Name, pile2Name);
-}
-
-//deal the entire deck from fetchDeck() into two piles
-function dealCards(pile1, pile2) {
-  for (let i = 0; i < 26; i++) {
-    dealCard(pile1);
-    dealCard(pile2);
-  }
-
-  const deckID = localStorage.getItem("deckID");
   
-  fetch("https://deckofcardsapi.com/api/deck/" + deckID + "/pile/" + pile1 + "/list/")
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch((err) => console.error(err));
+  localStorage.setItem("turn", 0);
 
-  fetch("https://deckofcardsapi.com/api/deck/" + deckID + "/pile/" + pile2 + "/list/")
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch((err) => console.error(err));
-  
 }
 
 //draw a single card from the deck and place it in a pile
-function dealCard(pile) {
+function drawCard(pile) {
   const deckID = localStorage.getItem("deckID");
 
   fetch("https://deckofcardsapi.com/api/deck/" + deckID + "/draw?count=1")
@@ -50,18 +36,72 @@ function dealCard(pile) {
     .catch((err) => {
       console.error(err);
     })
+  
+  if(pile == 0)
+    localStorage.setItem("turn", 1)
+  else
+    localStorage.setItem("turn", 0)
 }
 
-//place a single card into the pile provided
+//place the drawn card on the top of the pile
 function pileCard(pile, card) {
-  const deckID = localStorage.getItem("deckID");
-
-  console.log(card.code);
-
-  fetch("https://deckofcardsapi.com/api/deck/" + deckID + "/pile/" + pile + "/add/?cards=" + card.code)
-    .catch((err) => {
-      console.error(err);
-    })
+  localStorage.setItem("cardP" + pile, card.code);
 }
 
-fetchDeck();
+//draws a card from the deck into one of the piles
+function draw(player) {
+  console.log("player " + player + " draws");
+  if(player == localStorage.getItem("turn")) {
+    drawCard(player)
+  } else
+    console.log("Not your turn");
+
+  render();
+}
+
+//this checks for the win condition
+function snap(player) {
+  
+}
+
+//determines which key was pressed upon keypress
+function keyPress(key) {
+  switch(key) {
+    case 'a': draw(0);
+    break;
+    case 'k': draw(1);
+    break;
+    case 'z': snap(0);
+    break;
+    case 'm': snap(1);
+  }
+}
+
+//this changes the html to reflect the state of the game
+function render() {
+  if(localStorage.getItem("cardP0"))
+    document.getElementById("player0").innerText = localStorage.getItem("cardP0")
+  else 
+    document.getElementById("player0").innerText = "EMPTY";
+
+  if(localStorage.getItem("cardP1"))
+    document.getElementById("player1").innerText = localStorage.getItem("cardP1")
+  else
+    document.getElementById("player1").innerText = "EMPTY";
+}
+
+function reset() {
+  localStorage.removeItem("cardP0");
+  localStorage.removeItem("cardP1");
+
+  localStorage.setItem("turn", 0);
+
+  fetchDeck();
+
+  render;
+}
+
+document.addEventListener("keyup", e => keyPress(e.key));
+document.getElementById("reset").addEventListener("click", reset())
+
+initialise();

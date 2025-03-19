@@ -9,7 +9,7 @@ function initialise() {
 //make a new deck, save the deckID to local storage and deal the cards evenly between two piles
 function fetchDeck() {
   const newDeckUrl = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
-
+  
   fetch(newDeckUrl)
     .then((res) => res.json())
     .then((data) => {
@@ -22,6 +22,22 @@ function fetchDeck() {
   
   localStorage.setItem("turn", 0);
 
+}
+
+//shuffle the deck, ID stored at localstorage/deckID
+function shuffleDeck() {
+  const shuffleDeckUrl = "https://deckofcardsapi.com/api/deck/"
+
+  if(localStorage.getItem("deckID"))
+    fetch(shuffleDeckUrl + localStorage.getItem("deckID") + "/shuffle")
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.success == false)
+          fetchDeck();
+      })
+      .catch((err) => {
+        console.error(err);
+      })
 }
 
 //draw a single card from the deck and place it in a pile
@@ -46,6 +62,8 @@ function drawCard(pile) {
 //place the drawn card on the top of the pile
 function pileCard(pile, card) {
   localStorage.setItem("cardP" + pile, card.code);
+
+  render();
 }
 
 //draws a card from the deck into one of the piles
@@ -55,13 +73,13 @@ function draw(player) {
     drawCard(player)
   } else
     console.log("Not your turn");
-
-  render();
 }
 
 //this checks for the win condition
 function snap(player) {
-  
+  console.log(localStorage.getItem("cardP0").charAt(0))
+  if(localStorage.getItem("cardP0").charAt(0) == localStorage.getItem("cardP1").charAt(0))
+    document.getElementById("announce").innerText = "Player " + (player + 1) + " wins!";
 }
 
 //determines which key was pressed upon keypress
@@ -90,13 +108,16 @@ function render() {
     document.getElementById("player1").innerText = "EMPTY";
 }
 
+//resets the game state to start a fresh game
 function reset() {
   localStorage.removeItem("cardP0");
   localStorage.removeItem("cardP1");
 
   localStorage.setItem("turn", 0);
 
-  fetchDeck();
+  document.getElementById("announce").innerText = "";
+
+  shuffleDeck();
 
   render;
 }

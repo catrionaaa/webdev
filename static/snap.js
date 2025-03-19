@@ -77,43 +77,50 @@ function draw(player) {
 
 //this checks for the win condition
 function snap(player) {
-  console.log(localStorage.getItem("cardP0").charAt(0))
   if(localStorage.getItem("cardP0").charAt(0) == localStorage.getItem("cardP1").charAt(0))
     document.getElementById("announce").innerText = "Player " + (player + 1) + " wins!";
+    localStorage.setItem("gameOver", true);
 }
 
 //determines which key was pressed upon keypress
 function keyPress(key) {
-  switch(key) {
-    case 'a': draw(0);
-    break;
-    case 'k': draw(1);
-    break;
-    case 'z': snap(0);
-    break;
-    case 'm': snap(1);
+  console.log("1");
+  if(localStorage.getItem("gameOver") == "false") {
+    console.log("2");
+    switch(key) {
+      case 'a': draw(0);
+      break;
+      case 'k': draw(1);
+      break;
+      case 'z': snap(0);
+      break;
+      case 'm': snap(1);
+    }
   }
 }
 
 //this changes the html to reflect the state of the game
 function render() {
   if(localStorage.getItem("cardP0"))
-    document.getElementById("player0").innerText = localStorage.getItem("cardP0")
-  else 
-    document.getElementById("player0").innerText = "EMPTY";
-
-  if(localStorage.getItem("cardP1"))
-    document.getElementById("player1").innerText = localStorage.getItem("cardP1")
+    document.getElementById("player0img").src="https://deckofcardsapi.com/static/img/" + localStorage.getItem("cardP0") + ".png";
   else
-    document.getElementById("player1").innerText = "EMPTY";
+    document.getElementById("player0img").src="https://deckofcardsapi.com/static/img/back.png"
+  
+  if(localStorage.getItem("cardP1"))
+    document.getElementById("player1img").src="https://deckofcardsapi.com/static/img/" + localStorage.getItem("cardP1") + ".png";
+  else
+    document.getElementById("player1img").src="https://deckofcardsapi.com/static/img/back.png"
 }
 
 //resets the game state to start a fresh game
 function reset() {
+  console.log("Resetting");
+
   localStorage.removeItem("cardP0");
   localStorage.removeItem("cardP1");
 
   localStorage.setItem("turn", 0);
+  localStorage.setItem("gameOver", false)
 
   document.getElementById("announce").innerText = "";
 
@@ -123,6 +130,6 @@ function reset() {
 }
 
 document.addEventListener("keyup", e => keyPress(e.key));
-document.getElementById("reset").addEventListener("click", reset())
+document.getElementById("reset").addEventListener("click", reset);
 
 initialise();

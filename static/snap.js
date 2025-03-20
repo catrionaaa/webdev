@@ -1,14 +1,3 @@
-//initialises by checking localstorage for an existing game
-function initialise() {
-  if(!localStorage.getItem("deckId")) {
-    console.log("No deckID found")
-    reset();
-  } else {
-    console.log("deckID found")
-    render();
-  }
-}
-
 //make a new deck, save the deckID to local storage and deal the cards evenly between two piles
 function fetchDeck() {
   const newDeckUrl = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
@@ -24,7 +13,6 @@ function fetchDeck() {
     });
   
   localStorage.setItem("turn", 0);
-
 }
 
 //shuffle the deck, ID stored at localstorage/deckID
@@ -53,6 +41,9 @@ function drawCard(pile) {
     .then(res => res.json())
     .then(data => {
       pileCard(pile, data.cards[0]);
+      console.log(data.remaining);
+      if(data.remaining < 1)
+        shuffleDeck();
     })
     .catch((err) => {
       console.error(err);
@@ -89,9 +80,7 @@ function snap(player) {
 
 //determines which key was pressed upon keypress
 function keyPress(key) {
-  console.log("1");
   if(localStorage.getItem("gameOver") == "false") {
-    console.log("2");
     switch(key) {
       case 'a': draw(0);
       break;
@@ -125,16 +114,16 @@ function reset() {
   localStorage.removeItem("cardP1");
 
   localStorage.setItem("turn", 0);
-  localStorage.setItem("gameOver", false)
+  localStorage.setItem("gameOver", false);
 
   document.getElementById("announce").innerText = "";
 
   shuffleDeck();
 
-  render;
+  render();
 }
 
 document.addEventListener("keyup", e => keyPress(e.key));
 document.getElementById("reset").addEventListener("click", reset);
 
-initialise();
+reset();

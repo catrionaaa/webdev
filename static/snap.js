@@ -1,9 +1,12 @@
 //initialises by checking localstorage for an existing game
 function initialise() {
-  if(!localStorage.getItem("deckId"))
+  if(!localStorage.getItem("deckId")) {
+    console.log("No deckID found")
     reset();
-  else
+  } else {
+    console.log("deckID found")
     render();
+  }
 }
 
 //make a new deck, save the deckID to local storage and deal the cards evenly between two piles
@@ -38,6 +41,8 @@ function shuffleDeck() {
       .catch((err) => {
         console.error(err);
       })
+  else
+    fetchDeck();
 }
 
 //draw a single card from the deck and place it in a pile

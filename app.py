@@ -12,7 +12,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 api = Api(app)
 
 class GameAPI(Resource):
-    def getGames(self):
+    def get(self):
         games = Game.query.all()
         gameList = []
 
@@ -26,7 +26,7 @@ class GameAPI(Resource):
         return jsonify(gameList)
 
 
-    def recordGame(self):
+    def post(self):
         data = request.get_json()
 
         if not data or "id" not in data or "type" not in data:

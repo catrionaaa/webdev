@@ -58,6 +58,20 @@ class GameAPI(Resource):
         db.session.commit()
 
         return {"message": "game successfully updated"}
+    
+
+    def delete(self):
+        data = request.json
+        gameId = data.get("id")
+
+        game = Game.query.get(gameId)
+        if not game:
+            return {"error": "could not find game ID"}
+        
+        db.session.delete(game)
+        db.session.commit()
+
+        return {"message": "game successfully deleted"}
 
 
 @app.route('/')

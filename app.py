@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify
 from flask_restful import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
-from games import Game
+from games import db, Game
 
 app = Flask(__name__)
 

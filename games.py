@@ -1,8 +1,10 @@
-from app import db
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 class Game(db.Model):
-    id = db.Column(db.Integer, primary_key=True, nullable=false)
-    mode = db.Column(db.string(9), nullable=false)
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    mode = db.Column(db.String(9), nullable=False)
 
 class Key(db.Model):
     id = db.Column(db.Integer, primary_key=True)

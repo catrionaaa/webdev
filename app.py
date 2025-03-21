@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify
-from flask_restful import Api. Resource
+from flask_restful import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
-from models import Game
+from games import Game
 
 app = Flask(__name__)
 
@@ -18,13 +18,13 @@ class GameAPI(Resource):
         gameList = []
 
         for game in games:
-            gameDara = {
-                "id": game.id.
-                "type": game.type
+            gameData = {
+                "id": game.id,
+                "type": game.type,
             }
             gameList.append(gameData)
         
-        return jsnonify(gameList)
+        return jsonify(gameList)
 
 
 @app.route('/')

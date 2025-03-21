@@ -9,12 +9,25 @@ p {
 h1 {
     color: white;
     margin-top: 60px;
+    font-size: 80px;
 }
 
 .container {
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.home-img {
+    background-color: transparent;
+    width: 55%;
+    margin-top: 100px;
+}
+
+.select-game-btn {
+    width: 100%;
+    box-shadow: 3px 3px black;
+}
 
 /* Navbar CSS */
 

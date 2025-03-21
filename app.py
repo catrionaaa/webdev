@@ -9,7 +9,6 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///games.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-db = SQLAlchemy(app)
 api = Api(app)
 
 class GameAPI(Resource):
@@ -52,6 +51,8 @@ def admin():
     return render_template('admin.html')
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True, host='0.0.0.0', port=8000)
 
 api.add_resource(GameAPI, "/api/games")

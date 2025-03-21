@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from flask_restful import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
 from games import db, Game
@@ -24,6 +24,23 @@ class GameAPI(Resource):
             gameList.append(gameData)
         
         return jsonify(gameList)
+
+
+    def recordGame(self):
+        data = request.get_json()
+
+        if not data or "id" not in data or "type" not in data:
+            return jsonify({"error: missing data when recording game"}), 400
+
+        newGame = Game(
+            id=data["id"],
+            type=data["type"]
+        )
+
+        db.session.add(newGame)
+        db.session.commit()
+
+        return {"message": "game was successfully recorded"}
 
 
 @app.route('/')

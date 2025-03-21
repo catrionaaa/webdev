@@ -44,6 +44,21 @@ class GameAPI(Resource):
 
         #return jsonify({"message": "game was successfully recorded"}), 201
 
+    def put(self):
+        data = request.json
+        gameId = data.get("id")
+
+        game = Game.query.get(gameId)
+        if not game:
+            return {"error:" "could not find game ID"}
+        
+        game.id = data["id"]
+        game.type = data["type"]
+
+        db.session.commit()
+
+        return {"message": "game successfully updated"}
+
 
 @app.route('/')
 def home():

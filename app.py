@@ -30,7 +30,7 @@ class GameAPI(Resource):
         data = request.get_json()
 
         if not data or "id" not in data or "type" not in data:
-            return jsonify({"error: missing data when recording game"}), 400
+            return jsonify({"error": "missing data when recording game"}), 400
 
         newGame = Game(
             id=data["id"],

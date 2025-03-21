@@ -9,6 +9,8 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///games.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+db.init_app(app)
+
 api = Api(app)
 
 class GameAPI(Resource):
@@ -29,8 +31,8 @@ class GameAPI(Resource):
     def post(self):
         data = request.get_json()
 
-        if not data or "id" not in data or "type" not in data:
-            return jsonify({"error": "missing data when recording game"}), 400
+        #if not data or "id" not in data or "type" not in data:
+            #return jsonify({"error": "missing data when recording game"}), 400
 
         newGame = Game(
             id=data["id"],
@@ -40,7 +42,7 @@ class GameAPI(Resource):
         db.session.add(newGame)
         db.session.commit()
 
-        return {"message": "game was successfully recorded"}
+        #return jsonify({"message": "game was successfully recorded"}), 201
 
 
 @app.route('/')
@@ -67,9 +69,10 @@ def settings():
 def admin():
     return render_template('admin.html')
 
+api.add_resource(GameAPI, "/api/games")
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True, host='0.0.0.0', port=8000)
-
-api.add_resource(GameAPI, "/api/games")
+        print("test")
+    app.run(debug=True, host='0.0.0.0', port=5000)

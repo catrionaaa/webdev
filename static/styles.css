@@ -7,7 +7,12 @@ p {
 }
 
 h1 {
-    color: white
+    color: white;
+    margin-top: 60px;
+}
+
+.container {
+    text-align: center;
 }
 
 

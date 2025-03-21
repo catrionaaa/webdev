@@ -4,7 +4,7 @@ db = SQLAlchemy()
 
 class Game(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    mode = db.Column(db.String(9), nullable=False)
+    type = db.Column(db.String(9), nullable=False)
 
 class Key(db.Model):
     id = db.Column(db.Integer, primary_key=True)

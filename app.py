@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify, request
 from flask_restful import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
 from games import db, Game
+from adminauth import require_api_key
 
 app = Flask(__name__)
 
@@ -14,6 +15,7 @@ db.init_app(app)
 api = Api(app)
 
 class GameAPI(Resource):
+    @require_api_key
     def get(self):
         games = Game.query.all()
         gameList = []
@@ -28,6 +30,7 @@ class GameAPI(Resource):
         return jsonify(gameList)
 
 
+    @require_api_key
     def post(self):
         data = request.get_json()
 
@@ -44,6 +47,7 @@ class GameAPI(Resource):
 
         #return jsonify({"message": "game was successfully recorded"}), 201
 
+    @require_api_key
     def put(self):
         data = request.json
         gameId = data.get("id")
@@ -60,6 +64,7 @@ class GameAPI(Resource):
         return {"message": "game successfully updated"}
     
 
+    @require_api_key
     def delete(self):
         data = request.json
         gameId = data.get("id")

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 from flask_restful import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
-from games import db, Game
+from models import db, Game
 from adminauth import require_api_key
 
 app = Flask(__name__)

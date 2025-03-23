@@ -4,19 +4,24 @@
 
 {% block content %}
 
-<h1>htlm time</h1>
+<div class="snap-container">
+    <h2>Snap!</h2>
 
-<img id="player0img" src="https://deckofcardsapi.com/static/img/back.png">
+    <div class="snap-game mt-5">
+      <img id="player0img" src="https://deckofcardsapi.com/static/img/back.png">
 
-<img id="player1img" src="https://deckofcardsapi.com/static/img/back.png">
-
-<h1 id="announce"></h1>
-
-<button id="reset">Reset</button>
-
-<p>Controls:</p>
-<p>'a' and 'k' to draw, player 1 and 2 respectively</p>
-<p>'z' and 'm' to snap, player 1 and 2 respectively</p>
+      <div class="snap-result mx-5">
+        <p id="announce"></p>
+        <button type="button" class="btn btn-dark btn-lg" id="reset">Reset</button>
+      </div>
+      
+      <img id="player1img" src="https://deckofcardsapi.com/static/img/back.png">
+    </div>
+    
+    <p>Controls:</p>
+    <p>'a' and 'k' to draw, player 1 and 2 respectively</p>
+    <p>'z' and 'm' to snap, player 1 and 2 respectively</p>
+</div>
 
 <script type="text/javascript" src="/static/snap.js"></script>
 

@@ -46,6 +46,37 @@ h2 {
     align-items: center;
 }
 
+/* Snap CSS */
+
+.snap-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+}
+
+.snap-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    position: relative;
+}
+
+.snap-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 25%;
+}
+
+#announce {
+    font-size: 40px;
+    font-weight: bold;
+    width: 75%;
+}
+
 /* Navbar CSS */
 
 nav {

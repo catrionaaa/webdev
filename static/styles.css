@@ -59,7 +59,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 75%;
+    width: 50%;
     position: relative;
 }
 
@@ -69,6 +69,24 @@ h2 {
     align-items: center;
     text-align: center;
     width: 25%;
+}
+
+.snap-controls {
+    width: 48%;
+    margin-top: 70px;
+    color: white;
+    text-align: center;
+    border: 5px solid #2E2A2A;
+    font-size: 20px;
+    padding: 20px 0;
+}
+
+.reset-btn {
+    background-color: #2E2A2A;
+}
+
+.bold-text {
+    font-weight: bold;
 }
 
 #announce {

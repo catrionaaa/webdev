@@ -4,7 +4,7 @@ from flask_restful import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
 from models import db, Game, GameAPI
 from deckOfCards import DeckOfCardsAPI
-from flask_swagger import Swagger
+from flasgger import Swagger
 from adminauth import require_api_key
 swagger = Swagger(app)
 db.init_app(app)

@@ -1,5 +1,5 @@
 from app import db, app
-from games import Game
+from models import Game
 
 with app.app_context():
     db.create_all()

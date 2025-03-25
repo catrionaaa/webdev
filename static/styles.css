@@ -9,13 +9,16 @@ p {
 h1 {
     color: white;  
     font-size: 80px;
+    text-align: center;
 }
 
 h2 {
     color: white;
     margin-top: 75px;
     font-size: 60px;
+    text-align: center;
 }
+
 
 /* Home page CSS */
 
@@ -36,6 +39,7 @@ h2 {
     box-shadow: 3px 3px black;
 }
 
+
 /* Settings page CSS */
 
 .settings-container {
@@ -46,6 +50,7 @@ h2 {
     align-items: center;
 }
 
+
 /* Snap CSS */
 
 .snap-container {
@@ -53,6 +58,10 @@ h2 {
     display: flex;
     flex-direction: column;  
     align-items: center;
+}
+
+.snap-header-container {
+    width: 56%;
 }
 
 .snap-game {
@@ -114,6 +123,14 @@ nav {
 
 /* Select Game Page CSS */
 
+.select-game-container {
+    margin: 0 auto;
+    width: 60%;
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+}
+
 .game-card-container {
     display: flex;
     justify-content: center;
@@ -122,7 +139,9 @@ nav {
 }
 
 .card {
-    width: 18rem;
+    width: 14rem;
+    border-radius: 16px;
+    overflow: hidden;
 }
 
 .card-body {
@@ -131,5 +150,5 @@ nav {
 
 .col-md-3 {
     text-align: center;
-    margin-top: 70px;
+    margin-top: 88px;
 }

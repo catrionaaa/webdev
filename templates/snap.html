@@ -5,7 +5,20 @@
 {% block content %}
 
 <div class="snap-container">
-    <h2>Snap!</h2>
+
+    <div class="container-fluid snap-header-container">
+      <div class="row">
+          <div class="col-md-3">
+              <button type="button" class="btn btn-dark btn-lg" onclick="window.location.href='/selectgame'">
+                  <img src="../static/backspace-btn-img.png" alt="Back" width="50" height="30"/>
+              </button>
+          </div>
+
+          <div class="col-md-6">
+              <h2>Snap!</h2>
+          </div>
+      </div>
+    </div>
 
     <div class="snap-game mt-5">
       <img id="player0img" src="https://deckofcardsapi.com/static/img/back.png">

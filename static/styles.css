@@ -60,6 +60,10 @@ h2 {
     align-items: center;
 }
 
+.snap-header-container {
+    width: 56%;
+}
+
 .snap-game {
     display: flex;
     justify-content: center;

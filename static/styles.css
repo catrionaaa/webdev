@@ -95,6 +95,7 @@ h2 {
     width: 75%;
 }
 
+
 /* Navbar CSS */
 
 nav {
@@ -108,4 +109,27 @@ nav {
   
 .navbar-nav {
     padding-right: 30px;
+}
+
+
+/* Select Game Page CSS */
+
+.game-card-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 18rem;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.col-md-3 {
+    text-align: center;
+    margin-top: 70px;
 }

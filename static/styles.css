@@ -16,6 +16,7 @@ h2 {
     color: white;
     margin-top: 75px;
     font-size: 60px;
+    text-align: center;
 }
 
 /* Home page CSS */
@@ -133,4 +134,11 @@ nav {
 .col-md-3 {
     text-align: center;
     margin-top: 70px;
+}
+
+
+/* Settings Page CSS */
+
+.back-btn2 {
+    margin-top: 18px;
 }

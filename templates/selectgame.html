@@ -4,8 +4,42 @@
 
 {% block content %}
 
-    <h1>Select game</h1>
-    <a class="btn btn-primary btn-lg" href="/snap" role="button">Snap</a>
-    <a class="btn btn-primary btn-lg" href="/blackjack" role="button">Blackjack</a>
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <button type="button" class="back-btn btn btn-dark btn-lg" onclick="window.location.href='/'">
+                <img src="../static/backspace-btn-img.png" alt="Back" />
+            </button>
+        </div>
+
+        <!-- Second Section (2/4) -->
+        <div class="col-md-6">
+            <h1>Select Game</h1>
+        </div>
+
+        <!-- Third Section (1/4) -->
+        <div class="col-md-3">
+            <button type="button" class="settings-btn btn btn-dark btn-lg" onclick="window.location.href='/settings'">
+                <img src="../static/settings-btn-img.png" alt="Settings" />
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="game-card-container mt-5">
+    <div class="card">
+        <img src="https://picsum.photos/500/550" class="card-img-top" alt="Placeholder Image">
+        <div class="card-body">
+            <button type="button" class="select-game-btn btn btn-dark btn-lg" onclick="window.location.href='/snap'">Snap</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://picsum.photos/500/550" class="card-img-top" alt="Placeholder Image">
+        <div class="card-body">
+            <button type="button" class="select-game-btn btn btn-dark btn-lg" onclick="window.location.href='/blackjack'">Blackjack</button>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

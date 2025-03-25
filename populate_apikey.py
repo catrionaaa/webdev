@@ -2,12 +2,19 @@ import secrets
 from app import app, db
 from models import APIKey
 
+api_keys = [
+    {"owner": "Frontend App"},
+    {"owner": "Admin"},
+]
+
 with app.app_context():
-    new_key = APIKey(
-        key=secrets.token_hex(32),
-        owner="owner"
-    )
-    db.session.add(new_key)
+    for entry in api_keys:
+        new_key = APIKey(
+            key=secrets.token_hex(32),
+            owner=entry["owner"],
+            rate_limit=1000
+        )
+        db.session.add(new_key)
     
     db.session.commit()
-    print("API Key successfully created and stored in the database.")
+    print("API Keys successfully created and stored in the database.")

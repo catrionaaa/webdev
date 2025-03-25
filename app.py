@@ -30,7 +30,7 @@ with app.app_context():
 # Initialize Flask-RESTful API
 # --------------------------
 api = Api(app)
-api.add_resource(GameAPI, "/api/games", endpoint="games")
+#api.add_resource(GameAPI, "/api/games", endpoint="games")
 
 # --------------------------
 # Page Routes
@@ -95,7 +95,7 @@ class GameAPI(Resource):
         for game in games:
             gameData = {
                 "id": game.id,
-                "type": game.type,
+                "mode": game.type,
             }
             gameList.append(gameData)
         
@@ -106,12 +106,11 @@ class GameAPI(Resource):
     def post(self):
         data = request.get_json()
 
-        #if not data or "id" not in data or "type" not in data:
+        #if not data or "id" not in data or "mode" not in data:
             #return jsonify({"error": "missing data when recording game"}), 400
 
         newGame = Game(
-            id=data["id"],
-            type=data["type"]
+            mode=data["mode"]
         )
 
         db.session.add(newGame)
@@ -129,7 +128,7 @@ class GameAPI(Resource):
             return {"error:" "could not find game ID"}
         
         game.id = data["id"]
-        game.type = data["type"]
+        game.type = data["mode"]
 
         db.session.commit()
 
@@ -150,7 +149,7 @@ class GameAPI(Resource):
 
         return {"message": "game successfully deleted"}
 
-api.add_resource(GameAPI, "/api/game", "/api/game/<int:game_id>", endpoint="gameapi")
+api.add_resource(GameAPI, "/api/games", endpoint="games")
 
 # --------------------------
 # Run the app

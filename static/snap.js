@@ -81,20 +81,14 @@ function snap(player) {
       "mode": "snap",
     }
 
-    fetch("/api/game", {
+    fetch("/api/games", {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-API-KEY': '44737a11f4041cd2020bc0db317348cef006c7b22b90051cbbf49f7ff9de95c4'
       },
-      body: JSON.stringify(newGame) // Convert the JavaScript object to a JSON string
+      body: JSON.stringify(newGame)
     })
-      .then(response => response.json()) // Parse the JSON response
-      .then(data => {
-        console.log('Success:', data); // Handle the response data
-      })
-      .catch(error => {
-        console.error('Error:', error); // Handle any errors
-      });
 }
 
 //determines which key was pressed upon keypress

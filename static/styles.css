@@ -136,6 +136,8 @@ nav {
 
 .card {
     width: 14rem;
+    border-radius: 16px;
+    overflow: hidden;
 }
 
 .card-body {

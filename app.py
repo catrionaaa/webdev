@@ -55,9 +55,10 @@ def selectgame():
 def settings():
     return render_template('settings.html')
 
-@app.route('/admin')
-def admin():
-    return render_template('admin.html')
+#we have a seperate app for this now
+#@app.route('/admin')
+#def admin():
+#    return render_template('admin.html')
 
 # --------------------------
 # Deck of Cards API Routes

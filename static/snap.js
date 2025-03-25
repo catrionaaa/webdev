@@ -76,6 +76,25 @@ function snap(player) {
   if(localStorage.getItem("cardP0").charAt(0) == localStorage.getItem("cardP1").charAt(0))
     document.getElementById("announce").innerText = "Player " + (player + 1) + " wins!";
     localStorage.setItem("gameOver", true);
+
+    newGame = {
+      "mode": "snap",
+    }
+
+    fetch("/api/game", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newGame) // Convert the JavaScript object to a JSON string
+    })
+      .then(response => response.json()) // Parse the JSON response
+      .then(data => {
+        console.log('Success:', data); // Handle the response data
+      })
+      .catch(error => {
+        console.error('Error:', error); // Handle any errors
+      });
 }
 
 //determines which key was pressed upon keypress

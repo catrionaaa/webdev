@@ -1,19 +1,17 @@
-app = Flask(__name__)
 from flask import Flask, render_template, jsonify, request
 from flask_restful import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
 from models import db, Game, GameAPI
 from deckOfCards import DeckOfCardsAPI
-from flasgger import Swagger
+#from flasgger import Swagger
 from adminauth import require_api_key
-swagger = Swagger(app)
-db.init_app(app)
-api = Api(app)
 
 # --------------------------
 # Initialize Flask app
 # --------------------------
 app = Flask(__name__)
+
+#swagger = Swagger(app)
 
 # --------------------------
 # Configure SQLite database
@@ -152,20 +150,23 @@ class GameAPI(Resource):
 
         return {"message": "game successfully deleted"}
 
+api.add_resource(GameAPI, "/api/game", "/api/game/<int:game_id>", endpoint="gameapi")
+
 # --------------------------
 # Run the app
 # --------------------------
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8000)
 
-@app.route('/api/deck/new', methods=['GET'])
-def new_deck():
-    """
-    Create a new shuffled deck
-    ---
-    responses:
-      200:
-        description: A new shuffled deck was created
-    """
-    deck_data = DeckOfCardsAPI.new_deck()
-    return jsonify(deck_data)
+
+#@app.route('/api/deck/new', methods=['GET'])
+#def new_deck():
+#    """
+#    Create a new shuffled deck
+#    ---
+#    responses:
+#      200:
+#        description: A new shuffled deck was created
+#    """
+#    deck_data = DeckOfCardsAPI.new_deck()
+#    return jsonify(deck_data)

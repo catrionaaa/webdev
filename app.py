@@ -95,7 +95,7 @@ class GameAPI(Resource):
         for game in games:
             gameData = {
                 "id": game.id,
-                "mode": game.type,
+                "mode": game.mode,
             }
             gameList.append(gameData)
         

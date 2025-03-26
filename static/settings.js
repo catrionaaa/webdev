@@ -33,7 +33,6 @@ function selectCards(colour) {
 
   // save selection in localStorage
   localStorage.setItem("selectedCards", colour);
-  console.log("Selected color saved:", colour);
 }
 
 

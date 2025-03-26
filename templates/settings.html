@@ -21,8 +21,16 @@
         </div>
     </div>
 
-    <h3>Card Options</h3>
+    <div class="volume-container mt-5">
+        <label for="volume-slider">Volume:</label>
+        <input type="range" id="volume-slider" min="0" max="100" value="50">
+        <span id="volume-value">50%</span>
+    </div>
+
+    <h3 class="mt-5">Card Options</h3>
     
 </div>
+
+<script type="text/javascript" src="/static/volume.js"></script>
 
 {% endblock %}

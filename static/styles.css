@@ -19,6 +19,9 @@ h2 {
     text-align: center;
 }
 
+h3 {
+    color: white;
+}
 
 /* Home page CSS */
 
@@ -50,6 +53,36 @@ h2 {
     align-items: center;
 }
 
+.volume-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 20px;
+    width: 89%;
+    padding: 0 12px;
+}
+
+#volume-slider {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 16px;
+    background: #ddd;
+    border-radius: 10px;
+    outline: none;
+    transition: background 0.2s;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: #212529;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
 /* Snap CSS */
 
@@ -85,13 +118,9 @@ h2 {
     margin-top: 70px;
     color: white;
     text-align: center;
-    border: 5px solid #2E2A2A;
+    border-radius: 10px;
     font-size: 20px;
     padding: 20px 0;
-}
-
-.reset-btn {
-    background-color: #2E2A2A;
 }
 
 .bold-text {

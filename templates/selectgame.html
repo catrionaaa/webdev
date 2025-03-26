@@ -21,21 +21,12 @@
 </div>
 
 <div class="game-card-container mt-5">
-    <div class="card border-0">
+    <div class="card border-0 bg-dark text-white">
         <img src="../static/snap-img.png" class="card-img-top" alt="Snap">
-        <div class="card-body">
-            <button type="button" class="select-game-btn btn btn-dark btn-lg" onclick="window.location.href='/snap'">Snap</button>
+        <div class="overlay">
+            <button type="button" class="game-btn btn btn-dark btn-lg rounded-pill" onclick="window.location.href='/snap'">Snap</button>
         </div>
     </div>
-
-    <div class="card border-0">
-        <img src="../static/blackjack-img.png" class="card-img-top" alt="Blackjack">
-        <div class="card-body">
-            <button type="button" class="select-game-btn btn btn-dark btn-lg" onclick="window.location.href='/blackjack'">Blackjack</button>
-        </div>
-    </div>
-</div>
-
 </div>
 
 {% endblock %}

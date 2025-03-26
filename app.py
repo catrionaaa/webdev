@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from models import db, Game, GameAPI
 from deckOfCards import DeckOfCardsAPI
 #from flasgger import Swagger
-from adminauth import require_api_key
+from adminauth import require_api_key, require_api_key_admin
 
 # --------------------------
 # Initialize Flask app
@@ -88,7 +88,7 @@ def shuffle_deck(deck_id):
 # --------------------------
 
 class GameAPI(Resource):
-    @require_api_key
+    @require_api_key_admin
     def get(self):
         games = Game.query.all()
         gameList = []
@@ -119,7 +119,7 @@ class GameAPI(Resource):
 
         #return jsonify({"message": "game was successfully recorded"}), 201
 
-    @require_api_key
+    @require_api_key_admin
     def put(self):
         data = request.json
         gameId = data.get("id")
@@ -136,7 +136,7 @@ class GameAPI(Resource):
         return {"message": "game successfully updated"}
     
 
-    @require_api_key
+    @require_api_key_admin
     def delete(self):
         data = request.json
         gameId = data.get("id")

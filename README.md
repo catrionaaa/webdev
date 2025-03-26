@@ -29,10 +29,10 @@ python app.py
 ### Game CRUD (Admin routes require Admin-Key header)
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET    | /api/games              | Get all game modes |
-| POST   | /api/games              | Add a new game mode (admin) |
-| PUT    | /api/games/<game_id>   | Update game mode (admin) |
-| DELETE | /api/games/<game_id>   | Delete game mode (admin) |
+| GET    | /api/games              | Get all games played (admin) |
+| POST   | /api/games              | Add a new finished game |
+| PUT    | /api/games/<game_id>   | Update game record (admin) |
+| DELETE | /api/games/<game_id>   | Delete game record (admin) |
 
 **Header for Admin routes:**
 ```http

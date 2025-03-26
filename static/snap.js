@@ -110,13 +110,26 @@ function keyPress(key) {
 function render() {
   if(localStorage.getItem("cardP0"))
     document.getElementById("player0img").src="https://deckofcardsapi.com/static/img/" + localStorage.getItem("cardP0") + ".png";
-  else
-    document.getElementById("player0img").src="https://deckofcardsapi.com/static/img/back.png"
+  else 
+    document.getElementById("player0img").src=getCardImage();
   
   if(localStorage.getItem("cardP1"))
     document.getElementById("player1img").src="https://deckofcardsapi.com/static/img/" + localStorage.getItem("cardP1") + ".png";
   else
-    document.getElementById("player1img").src="https://deckofcardsapi.com/static/img/back.png"
+    document.getElementById("player1img").src=getCardImage();
+}
+
+// returns the correct card image based on the user's choice
+function getCardImage() {
+  const selectedCards = localStorage.getItem("selectedCards");
+
+  if (selectedCards === "black") {
+    return "https://deckofcardsapi.com/static/img/back.png";
+  } else if (selectedCards === "red") {
+    return "/static/red-cards.png";
+  } else if (selectedCards === "blue") {
+    return "/static/blue-cards.png";
+  }
 }
 
 //resets the game state to start a fresh game

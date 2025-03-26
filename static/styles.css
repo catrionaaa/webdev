@@ -159,6 +159,12 @@ nav {
     padding-right: 30px;
 }
 
+.navbar-logo {
+    height: 40px;
+    width: auto;
+}
+
+
 
 /* Select Game Page CSS */
 

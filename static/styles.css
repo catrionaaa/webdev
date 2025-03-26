@@ -23,6 +23,10 @@ h3 {
     color: white;
 }
 
+.back-btn {
+    float: left;
+}
+
 /* Home page CSS */
 
 .container {

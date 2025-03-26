@@ -92,6 +92,10 @@ h3 {
     cursor: pointer;
 }
 
+.faded {
+    opacity: 0.5;
+}
+
 /* Snap CSS */
 
 .snap-container {

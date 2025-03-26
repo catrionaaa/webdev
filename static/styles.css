@@ -88,6 +88,10 @@ h3 {
     cursor: pointer;
 }
 
+.card-options {
+    cursor: pointer;
+}
+
 /* Snap CSS */
 
 .snap-container {

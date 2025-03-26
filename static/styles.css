@@ -27,6 +27,7 @@ h3 {
     float: left;
 }
 
+
 /* Home page CSS */
 
 .container {
@@ -91,6 +92,7 @@ h3 {
 .card-options {
     cursor: pointer;
 }
+
 
 /* Snap CSS */
 
@@ -176,13 +178,52 @@ nav {
 }
 
 .card {
+    position: relative;
     width: 14rem;
     border-radius: 16px;
     overflow: hidden;
 }
 
-.card-body {
-    padding: 0;
+.card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-btn {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-weight: bold;
+    border: none;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease-in-out;
+}
+
+.game-btn:hover {
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+}
+
+.underline-text {
+    text-decoration: underline;
 }
 
 .col-md-3 {

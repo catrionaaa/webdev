@@ -85,13 +85,9 @@ h2 {
     margin-top: 70px;
     color: white;
     text-align: center;
-    border: 5px solid #2E2A2A;
+    border-radius: 10px;
     font-size: 20px;
     padding: 20px 0;
-}
-
-.reset-btn {
-    background-color: #2E2A2A;
 }
 
 .bold-text {

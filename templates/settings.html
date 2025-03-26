@@ -7,7 +7,7 @@
 <div class="settings-container">
 
     <div class="container-fluid mt-4">
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-md-3">
                 <button type="button" class="back-btn btn btn-dark btn-lg" onclick="window.history.back()">
                     <img src="../static/backspace-btn-img.png" alt="Back" width="50" height="30" />
@@ -19,15 +19,22 @@
             </div>
     
         </div>
+        <div class="row">
+            <div class="col-md-12 volume-container mt-5">
+                <label for="volume-slider">Volume:</label>
+                <input type="range" id="volume-slider" min="0" max="100" value="50">
+                <span id="volume-value">50%</span>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <h3 class="col-md-12 mt-5">Card Options:</h3>
+        </div>
+        <div class="row mt-3">
+            <img class="col-md-4 card-options" src="https://deckofcardsapi.com/static/img/back.png">
+            <img class="col-md-4 card-options" src="/static/blue-cards.png">
+            <img class="col-md-4 card-options" src="/static/red-cards.png">
+        </div>
     </div>
-
-    <div class="volume-container mt-5">
-        <label for="volume-slider">Volume:</label>
-        <input type="range" id="volume-slider" min="0" max="100" value="50">
-        <span id="volume-value">50%</span>
-    </div>
-
-    <h3 class="mt-5">Card Options</h3>
     
 </div>
 

@@ -23,6 +23,10 @@ h3 {
     color: white;
 }
 
+.back-btn {
+    float: left;
+}
+
 /* Home page CSS */
 
 .container {
@@ -59,7 +63,7 @@ h3 {
     gap: 10px;
     color: white;
     font-size: 20px;
-    width: 89%;
+    width: 100%;
     padding: 0 12px;
 }
 
@@ -81,6 +85,10 @@ h3 {
     height: 24px;
     background: #212529;
     border-radius: 50%;
+    cursor: pointer;
+}
+
+.card-options {
     cursor: pointer;
 }
 

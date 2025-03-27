@@ -3,15 +3,13 @@ from flask_restful import Api, Resource
 from flask_sqlalchemy import SQLAlchemy
 from models import db, Game, GameAPI
 from deckOfCards import DeckOfCardsAPI
-#from flasgger import Swagger
+from flasgger import Swagger
 from adminauth import require_api_key, require_api_key_admin
 
 # --------------------------
 # Initialize Flask app
 # --------------------------
 app = Flask(__name__)
-
-#swagger = Swagger(app)
 
 # --------------------------
 # Configure SQLite database
@@ -55,24 +53,72 @@ def selectgame():
 def settings():
     return render_template('settings.html')
 
-#we have a seperate app for this now
-#@app.route('/admin')
-#def admin():
-#    return render_template('admin.html')
-
 # --------------------------
 # Deck of Cards API Routes
 # --------------------------
-
+'''
 # Create a new shuffled deck
 @app.route('/api/deck/new', methods=['GET'])
 def new_deck():
+    """
+    Create a new shuffled deck
+    ---
+    tags:
+      - Deck of Cards
+    responses:
+      200:
+        description: A new shuffled deck was created
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                deck_id:
+                  type: string
+                remaining:
+                  type: integer
+    """
     deck_data = DeckOfCardsAPI.new_deck()
     return jsonify(deck_data)
 
 # Draw cards from a specific deck
 @app.route('/api/deck/<deck_id>/draw', methods=['GET'])
 def draw_cards(deck_id):
+    """
+    Draw cards from a specific deck
+    ---
+    tags:
+      - Deck of Cards
+    parameters:
+      - name: deck_id
+        in: path
+        required: true
+        description: The ID of the deck
+        schema:
+          type: string
+      - name: count
+        in: query
+        required: false
+        description: Number of cards to draw (default is 1)
+        schema:
+          type: integer
+    responses:
+      200:
+        description: Cards drawn from the deck
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                cards:
+                  type: array
+                  items:
+                    type: object
+    """
     count = request.args.get('count', default=1, type=int)
     cards_data = DeckOfCardsAPI.draw_cards(deck_id, count)
     return jsonify(cards_data)
@@ -80,9 +126,32 @@ def draw_cards(deck_id):
 # Shuffle an existing deck
 @app.route('/api/deck/<deck_id>/shuffle', methods=['GET'])
 def shuffle_deck(deck_id):
+    """
+    Shuffle an existing deck
+    ---
+    tags:
+      - Deck of Cards
+    parameters:
+      - name: deck_id
+        in: path
+        required: true
+        description: The ID of the deck
+        schema:
+          type: string
+    responses:
+      200:
+        description: The deck was shuffled
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+    """
     shuffle_data = DeckOfCardsAPI.shuffle_deck(deck_id)
     return jsonify(shuffle_data)
-
+'''
 # --------------------------
 # Flask endpoints
 # --------------------------
@@ -90,54 +159,109 @@ def shuffle_deck(deck_id):
 class GameAPI(Resource):
     @require_api_key_admin
     def get(self):
+        """
+        Get all games
+        ---
+        tags:
+          - Games
+        responses:
+          200:
+            description: A list of all games
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      mode:
+                        type: string
+        """
         games = Game.query.all()
-        gameList = []
-
-        for game in games:
-            gameData = {
-                "id": game.id,
-                "mode": game.mode,
-            }
-            gameList.append(gameData)
-        
+        gameList = [{"id": game.id, "mode": game.mode} for game in games]
         return jsonify(gameList)
-
 
     @require_api_key
     def post(self):
+        """
+        Add a new game
+        ---
+        tags:
+          - Games
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mode:
+                    type: string
+        responses:
+          201:
+            description: Game successfully added
+        """
         data = request.get_json()
-
-        #if not data or "id" not in data or "mode" not in data:
-            #return jsonify({"error": "missing data when recording game"}), 400
-
-        newGame = Game(
-            mode=data["mode"]
-        )
-
+        newGame = Game(mode=data["mode"])
         db.session.add(newGame)
         db.session.commit()
 
-        #return jsonify({"message": "game was successfully recorded"}), 201
-
     @require_api_key_admin
     def put(self):
+        """
+        Update an existing game
+        ---
+        tags:
+          - Games
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  mode:
+                    type: string
+        responses:
+          200:
+            description: Game successfully updated
+        """
         data = request.json
         gameId = data.get("id")
 
         game = Game.query.get(gameId)
         if not game:
-            return {"error:" "could not find game ID"}
+            return {"error": "could not find game ID"}
         
-        game.id = data["id"]
-        game.type = data["mode"]
-
+        game.mode = data["mode"]
         db.session.commit()
 
         return {"message": "game successfully updated"}
-    
 
     @require_api_key_admin
     def delete(self):
+        """
+        Delete a game
+        ---
+        tags:
+          - Games
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+        responses:
+          200:
+            description: Game successfully deleted
+        """
         data = request.json
         gameId = data.get("id")
 
@@ -155,18 +279,8 @@ api.add_resource(GameAPI, "/api/games", endpoint="games")
 # --------------------------
 # Run the app
 # --------------------------
+
+swagger = Swagger(app)
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8000)
-
-
-#@app.route('/api/deck/new', methods=['GET'])
-#def new_deck():
-#    """
-#    Create a new shuffled deck
-#    ---
-#    responses:
-#      200:
-#        description: A new shuffled deck was created
-#    """
-#    deck_data = DeckOfCardsAPI.new_deck()
-#    return jsonify(deck_data)

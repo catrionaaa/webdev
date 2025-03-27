@@ -189,8 +189,9 @@ nav {
 .card {
     position: relative;
     width: 14rem;
-    border-radius: 16px;
     overflow: hidden;
+    border-radius: 25px;
+    border: 3px solid #2E2A2A;
 }
 
 .card-img-top {
@@ -212,27 +213,27 @@ nav {
 }
 
 .game-btn {
-    position: absolute;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
     color: white;
     font-weight: bold;
     border: none;
-    font-size: 1.5rem;
+    font-size: 2.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background 0.3s ease-in-out;
+    transition: background 0.4s ease-in-out, opacity 0.4s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .game-btn:hover {
-    background: rgba(255, 255, 255, 0.8);
-    color: black;
+    background: #2E2A2A;
+    opacity: 0.9;
+    transform: scale(1.05);
 }
 
-.underline-text {
-    text-decoration: underline;
+.game-btn:not(:hover) {
+    transition: background 0.6s ease-in-out, opacity 0.6s ease-in-out, transform 0.3s ease-out;
 }
 
 .col-md-3 {

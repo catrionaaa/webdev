@@ -62,7 +62,6 @@ python test_api.py
 ---
 
 ## 🧭 Future Add-ons (Optional Polish)
-- Swagger/OpenAPI docs with Flask-RESTX or flasgger
 - Advanced user authentication
 - Admin dashboard with metrics
 

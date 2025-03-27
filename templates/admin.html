@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <title>CardsWebApp Admin</title>
 </head>
 <body>
@@ -10,13 +11,14 @@
     <div class="admin-container">
         <h2>Table of Played Games</h2>
         <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Mode</th>
-                </tr>
+            <thead class="table-header">
+                        <tr>
+                            <th>ID</th>
+                            <th>Mode</th>
+                        </tr>
+                    </thead>
             </thead>
-            <tbody>
+            <tbody class="table-content">
                 {% for row in table_data %}
                 <tr>
                     <td>{{ row.id }}</td>

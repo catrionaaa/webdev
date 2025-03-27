@@ -204,9 +204,15 @@ class GameAPI(Resource):
             description: Game successfully added
         """
         data = request.get_json()
+
+        if not data.get("mode"):
+            return {"error": "Missing required field 'mode'"}
+        
         newGame = Game(mode=data["mode"])
         db.session.add(newGame)
         db.session.commit()
+
+        return {"message": "Game successfully added"}, 201
 
     @require_api_key_admin
     def put(self):

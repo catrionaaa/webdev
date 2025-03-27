@@ -1,3 +1,6 @@
+const audioDraw = new Audio("/static/draw.mp3");
+const audioSnap = new Audio("/static/snap.mp3");
+
 //make a new deck, save the deckID to local storage and deal the cards evenly between two piles
 function fetchDeck() {
   const newDeckUrl = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
@@ -48,7 +51,7 @@ function drawCard(pile) {
     .catch((err) => {
       console.error(err);
     })
-  
+    
   if(pile == 0)
     localStorage.setItem("turn", 1)
   else
@@ -58,6 +61,8 @@ function drawCard(pile) {
 //place the drawn card on the top of the pile
 function pileCard(pile, card) {
   localStorage.setItem("cardP" + pile, card.code);
+
+  audioDraw.play();
 
   render();
 }
@@ -74,6 +79,9 @@ function draw(player) {
 //this checks for the win condition
 function snap(player) {
   if(localStorage.getItem("cardP0").charAt(0) == localStorage.getItem("cardP1").charAt(0))
+
+    audioSnap.play();
+
     document.getElementById("announce").innerText = "Player " + (player + 1) + " wins!";
     localStorage.setItem("gameOver", true);
 
@@ -144,9 +152,20 @@ function reset() {
 
   document.getElementById("announce").innerText = "";
 
+  setVolume();
+
   shuffleDeck();
 
   render();
+}
+
+function setVolume() {
+  const volume = localStorage.getItem("volume");
+
+  if(volume)
+    audioDraw.volume = volume;
+  else
+    audioDraw.volume = 0.5;
 }
 
 document.addEventListener("keyup", e => keyPress(e.key));

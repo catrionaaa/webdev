@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   slider.addEventListener("input", () => {
       volumeValue.textContent = slider.value + "%";
+      localStorage.setItem("volume", slider.value / 100);
   });
 });
 

@@ -6,22 +6,26 @@
     <title>CardsWebApp Admin</title>
 </head>
 <body>
-    <h2>Table of played games</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Mode</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in table_data %}
-            <tr>
-                <td>{{ row.id }}</td>
-                <td>{{ row.mode }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+
+    <div class="admin-container">
+        <h2>Table of Played Games</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Mode</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_data %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.mode }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
 </body>
 </html>

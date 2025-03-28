@@ -34,6 +34,11 @@ python app.py
 | PUT    | /api/games/<game_id>   | Update game record (admin) |
 | DELETE | /api/games/<game_id>   | Delete game record (admin) |
 
+### API Documentation
+| Endpoint | Description |
+|----------|-------------|
+| /apidocs | Returns a swagger UI |
+
 ---
 
 ## 🔐 Admin Auth

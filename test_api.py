@@ -6,7 +6,7 @@ class APITestCase(unittest.TestCase):
         self.client = app.test_client()
 
     def test_get_games(self):
-        response = self.client.get('/api/games')
+        response = self.client.get('/api/games', headers={'X-API-KEY': 'ad18364d5b3f50b20234c13821fe26e5e111a5128c6d3f8d19ed70cdaa4c8add'})
         self.assertEqual(response.status_code, 200)
 
     def test_create_game_unauthorized(self):

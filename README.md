@@ -1,6 +1,6 @@
 # 🎴 Card Game Web App (Group 6)
 
-This project is a Flask-based web app for playing online card games like Snap and Blackjack. It includes a RESTful API to manage game modes, uses the Deck of Cards API for game logic, and has admin-only protected routes.
+This project is a Flask-based web app for playing online card games like Snap and Blackjack. It includes a RESTful API to record played games, uses the Deck of Cards API for game logic, and has admin-only protected routes.
 
 ---
 

@@ -78,7 +78,7 @@ function draw(player) {
 
 //this checks for the win condition
 function snap(player) {
-  if(localStorage.getItem("cardP0").charAt(0) == localStorage.getItem("cardP1").charAt(0))
+  if(localStorage.getItem("cardP0").charAt(0) == localStorage.getItem("cardP1").charAt(0)) {
 
     audioSnap.play();
 
@@ -97,6 +97,7 @@ function snap(player) {
       },
       body: JSON.stringify(newGame)
     })
+  }
 }
 
 //determines which key was pressed upon keypress
@@ -135,7 +136,7 @@ function getCardImage() {
     return "https://deckofcardsapi.com/static/img/back.png";
   } else if (selectedCards === "red") {
     return "/static/red-cards.png";
-  } else if (selectedCards === "blue") {
+  } else {
     return "/static/blue-cards.png";
   }
 }

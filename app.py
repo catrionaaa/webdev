@@ -246,7 +246,7 @@ class GameAPI(Resource):
         game.mode = data["mode"]
         db.session.commit()
 
-        return {"message": "game successfully updated"}
+        return {"message": "game successfully updated"}, 200
 
     @require_api_key_admin
     def delete(self):

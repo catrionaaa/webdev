@@ -57,6 +57,7 @@ python test_api.py
 ## 🧭 Future Add-ons (Optional Polish)
 - Advanced user authentication
 - Additional metrics for the admin app
+- Blackjack game mode
 
 ---
 
